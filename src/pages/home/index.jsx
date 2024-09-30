@@ -7,7 +7,6 @@ export default function Home() {
 
             <Link to='/salvar'>Salvar</Link>
             <Link to='/consultar'>Consultar</Link>
-            <Link to='/alterar'>Alterar</Link>
             <Link to='/deletar'>Deletar</Link>
 
         </div>

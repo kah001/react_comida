@@ -1,6 +1,8 @@
 import './index.scss'
 import { useState } from 'react'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 export default function Consultar() {
@@ -29,13 +31,13 @@ export default function Consultar() {
                         <th>Preço</th>
                         <th>Setor</th>
                         <th>Estoque</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
 
-
                 <tbody>
-                    {listaComidas.map(item => 
-                        <tr>
+                    {listaComidas.map((item, pos) =>
+                        <tr key={pos}>
                             <td>{item.id}</td>
                             <td>{item.nome}</td>
                             <td>{item.tipo}</td>
@@ -43,6 +45,7 @@ export default function Consultar() {
                             <td>{item.preco}</td>
                             <td>{item.setor}</td>
                             <td>{item.estoque}</td>
+                            <td><Link to='/alterar'>alterar</Link></td>
                         </tr>
                     )}
                 </tbody>

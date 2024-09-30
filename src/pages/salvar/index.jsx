@@ -1,6 +1,8 @@
 import './index.scss'
 import { useState } from 'react'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
+
 
 export default function Salvar() {
     const [nome, setNome] = useState('')
@@ -9,6 +11,7 @@ export default function Salvar() {
     const [preco, setPreco] = useState('')
     const [setor, setSetor] = useState('')
     const [estoque, setEstoque] = useState(0)
+    const { id } = useParams()
 
 
     async function salvar() {
@@ -17,21 +20,34 @@ export default function Salvar() {
             "nome": nome,
             "tipo": tipo,
             "validade": validade,
-            "preco": preco, 
-            "setor": setor, 
+            "preco": preco,
+            "setor": setor,
             "estoque": estoque
         }
 
-        let resp = await axios.post(url, paramCor)
-        alert ('Comida adicionado na lista. Id: ' + resp.data.novoId)
+        await axios.post(url, paramCor)
     }
+
+    async function buscar() {
+        const url = `http://localhost:5010/comida/${id}`
+        let resp = await axios.get(url)
+
+        setNome(resp.data.nome)
+        setTipo(resp.data.tipo)
+        setValidade(resp.data.validade)
+        setPreco(resp.data.preco)
+        setSetor(resp.data.setor)
+        setEstoque(resp.data.estoque)
+    }
+
 
     return (
         <div className="pagina-salvar">
-
+            <h1>{id}</h1>
 
             <section className='form'>
                 <h1>COMIDAS</h1>
+                
                 <label>Nome:</label>
                 <input type="text" value={nome} onChange={a => setNome(a.target.value)} />
 
@@ -52,7 +68,6 @@ export default function Salvar() {
 
                 <div className='botao' onClick={salvar}>Salvar</div>
             </section>
-
 
         </div>
     )

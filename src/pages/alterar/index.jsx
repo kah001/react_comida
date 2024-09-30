@@ -8,8 +8,8 @@ export default function Alterar() {
     const [validade, setValidade] = useState('')
     const [preco, setPreco] = useState('')
     const [setor, setSetor] = useState('')
-    const [estoque, setEstoque] = useState(0)
-    const [id, setId] = useState(0)
+    const [estoque, setEstoque] = useState()
+    const [id, setId] = useState()
 
     async function alterar() {
         const url = 'http://localhost:5010/comida/' + id
